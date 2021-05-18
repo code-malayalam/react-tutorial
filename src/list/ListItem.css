@@ -1,0 +1,14 @@
+.list-item {
+    border: 1px solid rgb(196, 191, 191);
+    border-radius: 2px;
+    margin: 10px;
+    padding: 10px;
+}
+.list-item h4 {
+    margin: 0 0 10px 0;
+}
+
+.list-item .list-descr {
+    color: grey;
+    margin-bottom: 10px;
+}
