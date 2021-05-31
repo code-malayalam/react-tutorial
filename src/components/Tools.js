@@ -14,7 +14,7 @@ class Tools extends React.Component {
         return (
             <div className="list-tools">
                 <div className="list-header">
-                <select name="status" onChange={onAction}>
+                <select onChange={onAction} name="status">
                     <option value="all">All</option>
                     <option value="active">Active</option>
                     <option value="non-active">Non Active</option>

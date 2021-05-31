@@ -22,30 +22,47 @@ let arr = [
 
 class List extends React.Component {
 
-    myAction(evt) {
-        console.log('ON LIST CLICKED', evt.target.value);
-        arr = arr.filter((item) => {
-            if(evt.target.value === 'all') {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            data: arr,
+            activeState: 'active'
+        };
+
+    }
+
+    onListChange = (evt) => {
+        console.log(evt.target.value);
+        const value = evt.target.value;
+        const newList = arr.filter((item) => {
+            if(value === 'all') {
                 return true;
             }
-            if(evt.target.value === 'active' && item.isActive) {
-                return true;
+            if(value === 'active') {
+                return item.isActive === true;
             }
-            if(evt.target.value === 'non-active' && !item.isActive) {
-                return true;
+            if(value === 'non-active'){
+                return item.isActive === false;
             }
             return false;
         });
-        console.log(arr);
+
+        console.log(newList);
+
+        this.setState({
+            data: newList
+        });
 
     }
 
     render() {
+        console.log("RENDER");
         return (
-            <Tools onAction={this.myAction}>
+            <Tools onAction={this.onListChange}>
                 <div className="app-list">
                     {
-                        arr.map((obj) => {
+                        this.state.data.map((obj) => {
                             return <ListItem key={obj.title} title={obj.title} descr={obj.descr} isActive={obj.isActive}/>
                         })
                     }

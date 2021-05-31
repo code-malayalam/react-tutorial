@@ -7,9 +7,7 @@ function ListItem(props) {
         title,
         descr,
         isActive,
-        onAction
     } = props;
-
 
     return (
         <div className="list-item">
@@ -20,7 +18,7 @@ function ListItem(props) {
                 {descr}
             </div>
             <div className="list-label">
-                <Label onAction={onAction} isActive={isActive}/>
+                <Label isActive={isActive}/>
             </div>
         </div>
     );
