@@ -59,6 +59,12 @@ class List extends React.Component {
         });
     }
 
+    handleAdd = (item) => {
+        this.setState({
+            data: [item, ...this.state.data]
+        });
+    }
+
     render() {
 
         const {
@@ -80,7 +86,7 @@ class List extends React.Component {
         });
 
         return (
-            <Tools labelValue={activeState} onAction={this.onListChange}>
+            <Tools onAdd={this.handleAdd} labelValue={activeState} onAction={this.onListChange} count={data.length}>
                 <SimpleList onLabelClick={this.handleLabelClick} data={newList} onAction={this.handleDelete} />
             </Tools>
         );
