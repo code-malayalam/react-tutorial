@@ -29,7 +29,7 @@ class MyApp extends Component {
             case 'home':
                 return <HomePage />
             case 'usage':
-                    return <DummyPage key="usage" name="Usage" />
+                    return <DummyPage key='usage' name="Usage" />
             case 'settings':
                 return <DummyPage key="settings" name="Settings" />
             case 'logout':

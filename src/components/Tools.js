@@ -9,7 +9,8 @@ class Tools extends React.Component {
             onAction,
             labelValue,
             onAdd,
-            count
+            count,
+            onRefresh
         } = this.props;
 
         return (
@@ -21,6 +22,9 @@ class Tools extends React.Component {
                     <option value="non-active">Non Active</option>
                 </select>
                 <AddNew onAdd={onAdd}/>
+                <div className="refresh" onClick={onRefresh}>
+                    Refresh
+                </div>
                 </div>
                 {children}
                 <div className="list-footer">

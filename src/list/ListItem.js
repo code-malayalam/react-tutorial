@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Label from './Label';
 import './ListItem.css'
 
@@ -10,6 +10,10 @@ function ListItem(props) {
         onDelete,
         onLabelClick
     } = props;
+
+   useEffect(() => {
+       
+   });
 
     return (
         <div className="list-item">
