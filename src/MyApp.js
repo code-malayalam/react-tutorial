@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import DummyPage from './pages/DummyPage';
+import Usage from './pages/Usage';
 
 class MyApp extends Component {
 
@@ -29,7 +30,7 @@ class MyApp extends Component {
             case 'home':
                 return <HomePage />
             case 'usage':
-                    return <DummyPage key='usage' name="Usage" />
+                    return <Usage />
             case 'settings':
                 return <DummyPage key="settings" name="Settings" />
             case 'logout':

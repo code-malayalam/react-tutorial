@@ -8,16 +8,16 @@ function Header(props) {
     return (
         <div className="app-header">
             <span className="header-title">Code Malayalam </span>
-            <span onClick={() => {
+            <span className="header-menu" onClick={() => {
                 onMenuSelect('home');
             }}>Home </span>
-            <span onClick={() => {
+            <span className="header-menu" onClick={() => {
                 onMenuSelect('usage');
             }}>Usage </span>
-            <span onClick={() => {
+            <span className="header-menu" onClick={() => {
                 onMenuSelect('settings');
             }}>Settings </span>
-            <span onClick={() => {
+            <span className="header-menu" onClick={() => {
                 onMenuSelect('logout');
             }}>Logout </span>
         </div>
