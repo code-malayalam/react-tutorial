@@ -16,20 +16,7 @@ class HomePage extends React.Component {
     }
 
     componentDidMount() {
-        console.log('componentDidMount Home');
         fetch('/data.json')
-            .then((data) => {
-                return data.json();
-            })
-            .then((data) => {
-                this.setState({
-                    data: data
-                });
-            })
-    }
-    handleRefresh = () => {
-        console.log('Refresh');
-        fetch('/data2.json')
             .then((data) => {
                 return data.json();
             })
@@ -50,8 +37,23 @@ class HomePage extends React.Component {
     }
 
     componentWillUnmount() {
-        console.log("componentWillUnmount Home");
+        
     }
+
+    handleRefresh = () => {
+        console.log('Refresh');
+        fetch('/data2.json')
+            .then((data) => {
+                return data.json();
+            })
+            .then((data) => {
+                this.setState({
+                    data: data
+                });
+            })
+    }
+
+
 
     onListChange = (evt) => {
         const value = evt.target.value;

@@ -15,3 +15,18 @@
     font-size: 60px;
     font-weight: bold;
 }
+
+.boom {
+    display: flex;
+    justify-content: center;
+}
+
+.boom span {
+    padding: 20px;
+    font-size: 100px;
+    font-weight: bold;
+    color: white;
+    background: black;
+    border-radius: 50px;
+    margin: 40px;
+}
