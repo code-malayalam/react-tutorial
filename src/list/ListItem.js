@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import Label from './Label';
+import InfoLabel from './InfoLabel';
+// import Label from './Label';
 import './ListItem.css'
 
 function ListItem(props) {
@@ -25,7 +26,8 @@ function ListItem(props) {
                 {descr}
             </div>
             <div className="list-label">
-                <Label isActive={isActive} onAction={onLabelClick}/>
+                {/* <Label isActive={isActive} onAction={onLabelClick}/> */}
+                <InfoLabel />
             </div>
         </div>
     );
