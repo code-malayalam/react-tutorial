@@ -2,8 +2,10 @@ import React from 'react';
 import Tools from '../components/Tools';
 import SimpleList from '../list/SimpleList';
 
-const MyContext = React.createContext(false);
-const MyNewContext = React.createContext();
+import {
+    MyContext,
+    MyNewContext
+} from './mycontexts';
 
 class HomePage extends React.Component {
 
@@ -133,8 +135,3 @@ class HomePage extends React.Component {
 }
 
 export default HomePage;
-
-export {
-    MyContext,
-    MyNewContext
-}

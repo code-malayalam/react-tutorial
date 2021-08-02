@@ -1,20 +1,15 @@
-import React, { useEffect } from 'react';
-import InfoLabel from './InfoLabel';
-// import Label from './Label';
+import React from 'react';
+import Label2 from './Label2';
 import './ListItem.css'
 
 function ListItem(props) {
-    const {
+    const { 
         title,
         descr,
         isActive,
         onDelete,
         onLabelClick
     } = props;
-
-   useEffect(() => {
-       
-   });
 
     return (
         <div className="list-item">
@@ -26,8 +21,7 @@ function ListItem(props) {
                 {descr}
             </div>
             <div className="list-label">
-                {/* <Label isActive={isActive} onAction={onLabelClick}/> */}
-                <InfoLabel />
+                <Label2 isActive={isActive} onAction={onLabelClick}/>
             </div>
         </div>
     );
