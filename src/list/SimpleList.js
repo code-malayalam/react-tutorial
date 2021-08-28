@@ -2,7 +2,7 @@ import React from 'react';
 import ListItem from './ListItem';
 
 function SimpleList(props) {
-
+    console.log('RENDER SIMPLELIST');
     const {
         data,
         onAction,

@@ -3,6 +3,7 @@ import Label2 from './Label2';
 import './ListItem.css'
 
 function ListItem(props) {
+    console.log('RENDER LIST ITEM');
     const { 
         title,
         descr,

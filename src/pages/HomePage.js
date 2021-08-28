@@ -1,137 +1,110 @@
-import React from 'react';
+import React, {useState, useEffect, useMemo} from 'react';
 import Tools from '../components/Tools';
 import SimpleList from '../list/SimpleList';
+import JustInfo from './JustInfo';
 
 import {
     MyContext,
     MyNewContext
 } from './mycontexts';
 
-class HomePage extends React.Component {
+function HomePage() {
 
-    constructor(props) {
-        super(props);
+    const [showLabel, setShowLabel] = useState(true);
+    const [activeState, setActiveState] = useState('all');
+    const [data, setData] = useState([]);
 
-        this.state = {
-            data: [],
-            activeState: 'all',
-            message: '',
-            showLabel: true
-        };
 
-    }
-
-    componentDidMount() {
+    useEffect(() => {
         fetch('/data.json')
             .then((data) => {
                 return data.json();
             })
             .then((data) => {
-                this.setState({
-                    data: data
-                });
+                setData(data);
             })
-    }
+    }, []);
 
-    componentDidUpdate(prevProps, prevState) {
-        if (prevState.message !== this.state.message) {
-            this.setState({
-                message: 'Message'
-            });
-        }
-        
-    }
 
-    componentWillUnmount() {
-        
-    }
-
-    handleRefresh = () => {
+    const handleRefresh = () => {
         console.log('Refresh');
         fetch('/data2.json')
             .then((data) => {
                 return data.json();
             })
             .then((data) => {
-                this.setState({
-                    data: data
-                });
+                setData(data);
             })
     }
 
 
 
-    onListChange = (evt) => {
+    const onListChange = (evt) => {
         const value = evt.target.value;
-
-        this.setState({
-            activeState:value
-        });
+        setActiveState(value);
 
     }
 
-    handleDelete = (item) => {
+    const handleDelete = (item) => {
             console.log('Delete', item);
-            const newList = this.state.data.filter((element) => element.id !== item.id);
-
-            this.setState({
-                data: newList
-            });
+            const newList = data.filter((element) => element.id !== item.id);
+            setData(newList);
     }
 
-    handleLabelClick = (arg) => {
-        this.setState({
-            activeState: arg
-        });
+    const handleLabelClick = (arg) => {
+        setActiveState(arg);
     }
 
-    handleAdd = (item) => {
-        this.setState({
-            data: [item, ...this.state.data]
-        });
+    const handleAdd = (item) => {
+        setData([item, ...data]);
     }
 
-    handleShowLabel = (evt) => {
-        this.setState({
-            showLabel: evt.target.checked
-        });
+    const handleShowLabel = (evt) => {
+        setShowLabel(evt.target.checked);
     }
 
-    render() {
 
-        const {
-            data,
-            activeState
-        } = this.state;
+    const newList = data.filter((item) => {
+        if(activeState === 'all') {
+            return true;
+        }
+        if(activeState === 'active') {
+            return item.isActive === true;
+        }
+        if(activeState === 'non-active'){
+            return item.isActive === false;
+        }
+        return false;   
+    });
 
-        const newList = data.filter((item) => {
-            if(activeState === 'all') {
-                return true;
-            }
-            if(activeState === 'active') {
-                return item.isActive === true;
-            }
-            if(activeState === 'non-active'){
-                return item.isActive === false;
-            }
-            return false;
-        });
+    // const value = {
+    //     'key': 'value'
+    // };
 
-        return (
+    const value = useMemo(() => {
+        return {
+            'key': 'value'
+        };
+    }, []);
+
+    return (
+        (
             <div>
                 <div>
-                <input checked={this.state.showLabel} onChange={this.handleShowLabel} type="checkbox"></input> Show Label
+                <input checked={showLabel} onChange={handleShowLabel} type="checkbox"></input> Show Label
                 </div>
                 <MyNewContext.Provider value={100}>
-                    <MyContext.Provider value={this.state.showLabel}>
-                        <Tools onAdd={this.handleAdd} labelValue={activeState} onAction={this.onListChange} count={data.length} onRefresh={this.handleRefresh}>
-                            <SimpleList onLabelClick={this.handleLabelClick} data={newList} onAction={this.handleDelete} />
+                    <MyContext.Provider value={showLabel}>
+                        <Tools onAdd={handleAdd} labelValue={activeState} onAction={onListChange} count={data.length} onRefresh={handleRefresh}>
+                            <SimpleList onLabelClick={handleLabelClick} data={newList} onAction={handleDelete} />
                         </Tools>
+                        <JustInfo testValue={value} showLabel={showLabel} />
                     </MyContext.Provider>
                 </MyNewContext.Provider>
             </div>
-        );
-    }
+        )
+    );
+    
 }
 
 export default HomePage;
