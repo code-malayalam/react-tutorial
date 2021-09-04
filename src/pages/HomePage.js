@@ -1,7 +1,6 @@
-import React, {useState, useEffect, useMemo} from 'react';
+import React, {useState, useEffect} from 'react';
 import Tools from '../components/Tools';
 import SimpleList from '../list/SimpleList';
-import JustInfo from './JustInfo';
 
 import {
     MyContext,
@@ -77,16 +76,6 @@ function HomePage() {
         return false;   
     });
 
-    // const value = {
-    //     'key': 'value'
-    // };
-
-    const value = useMemo(() => {
-        return {
-            'key': 'value'
-        };
-    }, []);
-
     return (
         (
             <div>
@@ -98,7 +87,6 @@ function HomePage() {
                         <Tools onAdd={handleAdd} labelValue={activeState} onAction={onListChange} count={data.length} onRefresh={handleRefresh}>
                             <SimpleList onLabelClick={handleLabelClick} data={newList} onAction={handleDelete} />
                         </Tools>
-                        <JustInfo testValue={value} showLabel={showLabel} />
                     </MyContext.Provider>
                 </MyNewContext.Provider>
             </div>
