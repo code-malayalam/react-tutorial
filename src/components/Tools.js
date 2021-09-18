@@ -4,7 +4,6 @@ import AddNew from './AddNew';
 
     
 function Tools(props) {
-    console.log('RENDER TOOLS');
     const {
         children,
         onAction,

@@ -6,4 +6,22 @@
     border-radius: 2px;
     font-size: 12px;
     cursor: pointer;
+    position: relative;
+}
+.list-label-item-container {
+    position: relative;
+}
+.tooltip {
+    position: absolute;
+    top: -30px;
+    left: 0;
+    background: white;
+    border-radius: 2px;
+    padding: 5px 10px;
+    box-shadow: 2px 3px 10px 0px #ababab;
+    font-size: 12px;
+}
+
+.hide-tooltip {
+    visibility: hidden;
 }

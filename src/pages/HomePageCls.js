@@ -99,7 +99,6 @@ class HomePage extends React.Component {
     }
 
     render() {
-        console.log('RENDER HOME');
         const {
             data,
             activeState,
