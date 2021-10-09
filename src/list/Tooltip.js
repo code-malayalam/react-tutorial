@@ -2,7 +2,8 @@ import React from 'react';
 
 function Tooltip(props, ref) {
     const {
-        showTooltip
+        showTooltip,
+        message
     } = props;
 
 
@@ -12,7 +13,7 @@ function Tooltip(props, ref) {
 
     return (
         <label className="tooltip"  ref={ref}>
-            This is {props.isActive ? 'Active': 'Non Active'} tooltip
+            {message}
         </label>
     );
 }

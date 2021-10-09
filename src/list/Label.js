@@ -1,26 +1,13 @@
-import React, {useContext, useLayoutEffect, useRef, useState} from 'react';
+import React, {useContext } from 'react';
 import './Label.css';
 import {MyContext} from '../pages/mycontexts';
 import Tooltip from './Tooltip';
+import { useTooltip } from '../hooks/ourHooks';
 
 function Label(props) {
     const val = useContext(MyContext);
-    const [showTooltip, setShowTooltip] = useState(false);
-
-    const labelRef = useRef();
-    const refObj = useRef();
-
-    useLayoutEffect(() => {
-        if(showTooltip) {
-            console.log(labelRef.current);
-            const width1 = labelRef.current.getBoundingClientRect().width;
-            const width2 = refObj.current.getBoundingClientRect().width;
-
-            refObj.current.style.left = `${-(width2 - width1) / 2}px`
-        }
-
-    }, [showTooltip]);
-
+   
+    const [showTooltip, setShowTooltip, labelRef, refObj] = useTooltip();
 
 
     const style = props.isActive ? {background: 'green'} : {background: 'orange'}
@@ -37,6 +24,7 @@ function Label(props) {
     }
 
 
+    const text = props.isActive ? 'Active': 'Non Active';
 
     return (
         <div className="list-label-item-container">
@@ -50,10 +38,9 @@ function Label(props) {
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
             >
-                    {props.isActive ? 'Active': 'Non Active'}
-                
+                {text}
             </span>
-            <Tooltip ref={refObj} showTooltip={showTooltip}/>
+            <Tooltip ref={refObj} showTooltip={showTooltip} message={`This is ${text}`}/>
         </div>
     );
 }
