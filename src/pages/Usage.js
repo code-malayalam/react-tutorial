@@ -1,33 +1,33 @@
-import React, {useReducer} from 'react';
+import React from 'react';
 import './Usage.css';
-import usageReducer, {TYPE} from '../reducers/usageReducer';
+import {useDispatch, useSelector} from 'react-redux';
 
-const intialState = {
-    value: 0
-};
+
 function Usage() {
 
-    const [state, dispatch] = useReducer(usageReducer, intialState);
+    const value = useSelector((state) => {
+        return state.value;
+    });
 
+    const dispatch = useDispatch();
 
+    console.log(value);
     return (
         <div className="usage">
-            <div className="usage-item" style={{background: state.color}}>
+            <div className="usage-item">
                 <button onClick={() => {
                     dispatch({
-                        type: TYPE.CHANGE_VALUE,
-                        payload: 1
+                        type: 'increment'
                     });
                 }}>
                     Increment
                 </button>
 
-                <label>{state.value}</label>
+                <label>{value}</label>
 
                 <button onClick={() => {
                     dispatch({
-                        type: TYPE.CHANGE_VALUE,
-                        payload: -1
+                        type: 'decrement'
                     });
                 }}>
                     Decrement
@@ -35,19 +35,13 @@ function Usage() {
             </div>
 
             <button onClick={() => {
-                dispatch({
-                    type: TYPE.CHANGE_COLOR,
-                    payload: 'green'
-                });
+
             }}>
                 Green
             </button>
 
             <button onClick={() => {
-                dispatch({
-                    type: TYPE.CHANGE_COLOR,
-                    payload: 'blue'
-                });
+
             }}>
                 Blue
             </button>

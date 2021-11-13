@@ -4,7 +4,11 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import DummyPage from './pages/DummyPage';
+import Settings from './pages/Settings';
 import Usage from './pages/Usage';
+import { Provider } from 'react-redux'
+import store from './redux/store';
+
 
 class MyApp extends Component {
 
@@ -32,7 +36,7 @@ class MyApp extends Component {
             case 'usage':
                     return <Usage />
             case 'settings':
-                return <DummyPage key="settings" name="Settings" />
+                return <Settings />;
             case 'logout':
                 return <DummyPage key="logout" name="Logout" />
             default:
@@ -42,13 +46,15 @@ class MyApp extends Component {
 
     render() {
         return (
-            <div className="app">
-                <Header onMenuSelect={this.handleMenuSelect}/>
-                <div className="app-body">
-                    {this.getPage()}
+            <Provider store={store}>
+                <div className="app">
+                    <Header onMenuSelect={this.handleMenuSelect}/>
+                    <div className="app-body">
+                        {this.getPage()}
+                    </div>
+                    <Footer />
                 </div>
-                <Footer />
-            </div>
+            </Provider>
         );
     }
 }

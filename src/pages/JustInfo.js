@@ -1,15 +1,34 @@
-import React from "react";
+import React from 'react';
+import './Usage.css';
 
-function JustInfo(props) {
-    const {
-        showLabel,
-    } = props;
-    return (
-        <div>
-            JUST INFO {showLabel}
-        </div>
-    );
+class JustInfo extends React.Component{
+
+    render() {
+
+        return (
+            <div className="usage">
+                <div className="usage-item">
+                    <button onClick={() => {
+
+                    }}>
+                        Increment
+                    </button>
+
+                    <label> - </label>
+
+                    <button onClick={() => {
+
+                    }}>
+                        Decrement
+                    </button>
+
+                </div>
+            </div>
+        );
+    }
+
 }
 
-export default React.memo(JustInfo);
+export default JustInfo;
+
 
