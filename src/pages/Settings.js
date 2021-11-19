@@ -1,62 +1,23 @@
 import React from 'react';
-import './Usage.css';
-import {connect} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { setShowLabel } from '../redux/store';
 
-class Settings extends React.Component{
+const Settings = () => {
 
-    render() {
-        const {
-            value,
-            myIncrement,
-            myDecrement
-        } = this.props;
+    const dispatch = useDispatch();
 
-        return (
-            <div className="usage">
-                <div className="usage-item">
-                    <button onClick={() => {
-                        myIncrement()
-                    }}>
-                        Increment
-                    </button>
-
-                    <label> {value} </label>
-
-                    <button onClick={() => {
-                        myDecrement()
-                    }}>
-                        Decrement
-                    </button>
-
-                </div>
-            </div>
-        );
+    const handleShowLabel = (evt) => {
+        const checkboxValue = evt.target.checked;
+        dispatch(setShowLabel(checkboxValue));
     }
 
-}
+    const val = useSelector((state) => state.showLabel);
 
-const mapStateToProps = (state) => {
-    return {
-        value: state.value,
-    };
-}
+    return (
+        <div>
+        <input checked={val} onChange={handleShowLabel} type="checkbox"></input> Show Label
+        </div>
+    );
+};
 
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        myIncrement: () => {
-            dispatch({
-                type: 'increment'
-            });
-        },
-        myDecrement: () => {
-            dispatch({
-                type: 'decrement'
-            });
-        },
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Settings);
-
-
+export default Settings;

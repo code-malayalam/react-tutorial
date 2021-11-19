@@ -1,6 +1,7 @@
 import React from 'react';
 import './Usage.css';
 import {useDispatch, useSelector} from 'react-redux';
+import {increment, decrement} from '../redux/store';
 
 
 function Usage() {
@@ -16,9 +17,7 @@ function Usage() {
         <div className="usage">
             <div className="usage-item">
                 <button onClick={() => {
-                    dispatch({
-                        type: 'increment'
-                    });
+                    dispatch(increment());
                 }}>
                     Increment
                 </button>
@@ -26,9 +25,7 @@ function Usage() {
                 <label>{value}</label>
 
                 <button onClick={() => {
-                    dispatch({
-                        type: 'decrement'
-                    });
+                    dispatch(decrement());
                 }}>
                     Decrement
                 </button>

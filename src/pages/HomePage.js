@@ -3,13 +3,11 @@ import Tools from '../components/Tools';
 import SimpleList from '../list/SimpleList';
 
 import {
-    MyContext,
     MyNewContext
 } from './mycontexts';
 
 function HomePage() {
 
-    const [showLabel, setShowLabel] = useState(true);
     const [activeState, setActiveState] = useState('all');
     const [data, setData] = useState([]);
 
@@ -58,10 +56,6 @@ function HomePage() {
         setData([item, ...data]);
     }
 
-    const handleShowLabel = (evt) => {
-        setShowLabel(evt.target.checked);
-    }
-
 
     const newList = data.filter((item) => {
         if(activeState === 'all') {
@@ -79,15 +73,10 @@ function HomePage() {
     return (
         (
             <div>
-                <div>
-                <input checked={showLabel} onChange={handleShowLabel} type="checkbox"></input> Show Label
-                </div>
                 <MyNewContext.Provider value={100}>
-                    <MyContext.Provider value={showLabel}>
                         <Tools onAdd={handleAdd} labelValue={activeState} onAction={onListChange} count={data.length} onRefresh={handleRefresh}>
                             <SimpleList onLabelClick={handleLabelClick} data={newList} onAction={handleDelete} />
                         </Tools>
-                    </MyContext.Provider>
                 </MyNewContext.Provider>
             </div>
         )

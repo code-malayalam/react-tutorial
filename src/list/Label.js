@@ -1,15 +1,14 @@
-import React, {useContext } from 'react';
+import React from 'react';
 import './Label.css';
-import {MyContext} from '../pages/mycontexts';
 import Tooltip from './Tooltip';
 import { useTooltip } from '../hooks/ourHooks';
+import { useSelector } from 'react-redux';
 
 function Label(props) {
-    const val = useContext(MyContext);
    
     const [showTooltip, setShowTooltip, labelRef, refObj] = useTooltip();
 
-
+    const val = useSelector((state) => state.showLabel);
     const style = props.isActive ? {background: 'green'} : {background: 'orange'}
     if(val === false) {
         return null;

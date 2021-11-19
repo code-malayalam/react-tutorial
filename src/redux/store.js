@@ -1,27 +1,56 @@
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 
-const initialState = {
-    value: 0
-};
 
-function appReducer(prevState = initialState, action) {
+const appReducer = combineReducers({
+    value,
+    showLabel
+});
+
+function value(prevState = 0, action) {
     switch (action.type) {
         case 'increment':
-            return {
-                ...prevState,
-                value: prevState.value + 1
-            };
+            return prevState + 1;
         case 'decrement':
-            return {
-                ...prevState,
-                value: prevState.value - 1
-            };
-    
+            return prevState - 1;
         default:
             return prevState;
     }
 }
 
-const store = createStore(appReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+function showLabel(prevState = true, action) {
+    switch (action.type) {
+        case 'show-label':
+            return action.payload;
+        default:
+            return prevState;
+    }
+}
+
+function increment() {
+    return {
+        type: 'increment'
+    }
+}
+
+function decrement() {
+    return {
+        type: 'decrement'
+    }
+}
+
+function setShowLabel(payload) {
+    return {
+        type: 'show-label',
+        payload: payload
+    };
+}
+
+const store = createStore(appReducer);
 
 export default store;
+
+export {
+    increment,
+    decrement,
+    setShowLabel
+}
