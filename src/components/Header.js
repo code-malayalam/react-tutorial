@@ -19,7 +19,7 @@ function Header(props) {
             }}>Settings </span>
             <span className="header-menu" onClick={() => {
                 onMenuSelect('logout');
-            }}>Logout </span>
+            }}>Test </span>
         </div>
     );
 }
