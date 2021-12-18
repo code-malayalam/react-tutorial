@@ -1,0 +1,17 @@
+.loading {
+    display: flex;
+    justify-content: center;
+    background: #28b76d;
+    padding: 5px;
+    color: white;
+    margin: 1px;
+}
+
+.error {
+    display: flex;
+    justify-content: center;
+    background: #b72828;
+    padding: 5px;
+    color: white;
+    margin: 1px;
+}

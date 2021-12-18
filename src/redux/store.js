@@ -1,9 +1,11 @@
-import { createStore, combineReducers } from 'redux';
-
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import logger from 'redux-logger';
+import thunk from 'redux-thunk';
 
 const appReducer = combineReducers({
     value,
-    showLabel
+    showLabel,
+    dataInfo
 });
 
 function value(prevState = 0, action) {
@@ -26,6 +28,54 @@ function showLabel(prevState = true, action) {
     }
 }
 
+function dataInfo(state = {
+    data: [],
+    error: '',
+    loading: false
+}, action) {
+    switch (action.type) {
+        case 'set-data':
+            return {
+                ...state,
+                data: action.payload
+            }
+        case 'loading':
+            return {
+                ...state,
+                loading: action.payload
+            }
+        case 'error':
+            return {
+                ...state,
+                error: action.payload
+            }
+        default:
+            return state;
+    }
+}
+
+function setData(data) {
+    return {
+        type: 'set-data',
+        payload: data
+    };
+}
+
+
+function setLoading(isLoading) {
+    return {
+        type: 'loading',
+        payload: isLoading
+    };
+}
+
+function setError(error) {
+    return {
+        type: 'error',
+        payload: error
+    };
+}
+
 function increment() {
     return {
         type: 'increment'
@@ -45,12 +95,15 @@ function setShowLabel(payload) {
     };
 }
 
-const store = createStore(appReducer);
+const store = createStore(appReducer, applyMiddleware(thunk, logger));
 
 export default store;
 
 export {
     increment,
     decrement,
-    setShowLabel
+    setShowLabel,
+    setData,
+    setLoading,
+    setError
 }

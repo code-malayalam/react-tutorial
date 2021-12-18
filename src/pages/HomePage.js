@@ -1,6 +1,10 @@
 import React, {useState, useEffect} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Tools from '../components/Tools';
 import SimpleList from '../list/SimpleList';
+import {getDataInfo, deleteAndUpdate} from '../redux/api';
+
+import './HomePage.css';
 
 import {
     MyNewContext
@@ -9,32 +13,21 @@ import {
 function HomePage() {
 
     const [activeState, setActiveState] = useState('all');
-    const [data, setData] = useState([]);
-
+    const dispatch = useDispatch();
+    const data = useSelector(state => state.dataInfo.data);
+    const loading = useSelector(state => state.dataInfo.loading);
+    const error = useSelector(state => state.dataInfo.error);
 
     useEffect(() => {
-        fetch('/data.json')
-            .then((data) => {
-                return data.json();
-            })
-            .then((data) => {
-                setData(data);
-            })
-    }, []);
+        // getDataInfo(dispatch);
+        const aa = dispatch(getDataInfo());
+        console.log(aa);
+    }, [dispatch]);
 
 
     const handleRefresh = () => {
-        console.log('Refresh');
-        fetch('/data2.json')
-            .then((data) => {
-                return data.json();
-            })
-            .then((data) => {
-                setData(data);
-            })
+        getDataInfo(dispatch);
     }
-
-
 
     const onListChange = (evt) => {
         const value = evt.target.value;
@@ -43,9 +36,7 @@ function HomePage() {
     }
 
     const handleDelete = (item) => {
-            console.log('Delete', item);
-            const newList = data.filter((element) => element.id !== item.id);
-            setData(newList);
+        dispatch(deleteAndUpdate(item.id))
     }
 
     const handleLabelClick = (arg) => {
@@ -53,7 +44,7 @@ function HomePage() {
     }
 
     const handleAdd = (item) => {
-        setData([item, ...data]);
+        // setData([item, ...data]);
     }
 
 
@@ -73,6 +64,13 @@ function HomePage() {
     return (
         (
             <div>
+
+                {
+                    loading && <div className="loading"> Loading ... </div>
+                }
+                {
+                    error && <div className="error"> {error} </div>
+                }
                 <MyNewContext.Provider value={100}>
                         <Tools onAdd={handleAdd} labelValue={activeState} onAction={onListChange} count={data.length} onRefresh={handleRefresh}>
                             <SimpleList onLabelClick={handleLabelClick} data={newList} onAction={handleDelete} />

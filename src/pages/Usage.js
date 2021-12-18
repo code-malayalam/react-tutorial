@@ -12,7 +12,6 @@ function Usage() {
 
     const dispatch = useDispatch();
 
-    console.log(value);
     return (
         <div className="usage">
             <div className="usage-item">
