@@ -7,7 +7,7 @@ import DummyPage from './pages/DummyPage';
 import Settings from './pages/Settings';
 import Usage from './pages/Usage';
 import { Provider } from 'react-redux'
-import store from './redux/store';
+import store from './redux-toolkit/store';
 
 
 class MyApp extends Component {

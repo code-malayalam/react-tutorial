@@ -20,8 +20,7 @@ function getDataInfo() {
 } 
 
 function deleteItem(id) {
-    return function (dispatch, getState, args) {
-        console.log('******', args);
+    return function (dispatch) {
         dispatch(setLoading(true));
         return axios.get('http://localhost:8090/delete/' + id)
             .then(() => {

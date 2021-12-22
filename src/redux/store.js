@@ -1,5 +1,4 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 
 const appReducer = combineReducers({
@@ -95,7 +94,7 @@ function setShowLabel(payload) {
     };
 }
 
-const store = createStore(appReducer, applyMiddleware(thunk, logger));
+const store = createStore(appReducer, applyMiddleware(thunk));
 
 export default store;
 

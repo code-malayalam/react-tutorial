@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Tools from '../components/Tools';
 import SimpleList from '../list/SimpleList';
-import {getDataInfo, deleteAndUpdate} from '../redux/api';
+import {deleteAndUpdate, getDataInfo} from '../redux-toolkit/dataInfoReducer';
 
 import './HomePage.css';
 
@@ -19,9 +19,7 @@ function HomePage() {
     const error = useSelector(state => state.dataInfo.error);
 
     useEffect(() => {
-        // getDataInfo(dispatch);
-        const aa = dispatch(getDataInfo());
-        console.log(aa);
+        dispatch(getDataInfo());
     }, [dispatch]);
 
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setShowLabel } from '../redux/store';
+import { setShowLabel } from '../redux-toolkit/showLabelReducer';
 
 const Settings = () => {
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import './Usage.css';
 import {useDispatch, useSelector} from 'react-redux';
-import {increment, decrement} from '../redux/store';
+import {increment, decrement} from '../redux-toolkit/valueReducer';
 
 
 function Usage() {

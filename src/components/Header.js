@@ -1,7 +1,11 @@
 import React from 'react';
 import './Header.css';
+import { useDispatch } from 'react-redux';
 
 function Header(props) {
+
+    const dispatch = useDispatch();
+
     const {
         onMenuSelect
     } = props;
@@ -18,7 +22,9 @@ function Header(props) {
                 onMenuSelect('settings');
             }}>Settings </span>
             <span className="header-menu" onClick={() => {
-                onMenuSelect('logout');
+                dispatch({
+                    type: 'logout'
+                });
             }}>Logout </span>
         </div>
     );
